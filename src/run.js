@@ -75,17 +75,6 @@ device.on("error", (error) => {
 
 device.on("data", (data) => {
   console.log("Data from device:", data);
-
-  // console.log(`Boolean status of default property: ${data.dps["20"]}.`);
-
-  // // Set default property to opposite
-  // if (!stateHasChanged) {
-  //   device.set({ dps: schema.power, set: true }); // !data.dps[schema.power]
-
-  //   // Otherwise we'll be stuck in an endless
-  //   // loop of toggling the state.
-  //   stateHasChanged = true;
-  // }
 });
 
 // disconnect on CTRL+C
