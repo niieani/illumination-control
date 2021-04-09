@@ -1,4 +1,4 @@
-const TuyAPI = require("tuyapi");
+const TuyAPI = require("./tuyapi");
 const devices = require('./devices')
 const {getColor, getScene, schema} = require('./aukey-helpers')
 
@@ -7,7 +7,6 @@ const device = new TuyAPI(devices[0]);
 let stateHasChanged = false;
 
 // https://github.com/TheAgentK/tuya-mqtt/blob/master/docs/DEVICES.md
-
 
 // Find device on network
 device.find().then(() => {
@@ -42,35 +41,27 @@ device.on("connected", async () => {
     [schema.power]: true,
     [schema.sceneDefinition]: getScene({
       targetSlotNth: 4,
-      // 5000 is 375ms == 13.3
-      // 7000 is 550ms == 12.7
-      // 9000 is 700ms == 12.85
-      // 12000 is 925ms == 12.97
-      // 16000 is 1270ms == 12.6
-      // 25000 is 1970ms == 12.7
-      // 26000 is 2040ms == 12.75 ratio or maybe even 13 (10x was 20 seconds)
       stages: [
         {crossfade: false, holdMs: 1000, hue: 10, saturation: 1000, lightness: 1000},
-        // {crossfade: false, holdMs: 1000, hue: 50, saturation: 500, lightness: 1000},
       ]
     }),
   } });
-  interval = setInterval(() => {
-    console.log('changing color NOW', {hue, saturation})
-    // device.set({ dps: schema.color, set: getColor(hue, 1000, 1000) });
-    device.set({ dps: schema.sceneDefinition, set: getScene({
-      targetSlotNth: 4,
-      stages: [
-        {crossfade: false, holdMs: 1000, hue, saturation: 1000, lightness: 1000},
-      ]
-    }) });
-    hue += 20
-    saturation -= 50
-    if (hue > 360) hue = 0;
-    if (saturation < 500) saturation = 1000
-  }, 2000);
+  // interval = setInterval(() => {
+  //   console.log('changing color NOW', {hue, saturation})
+  //   // device.set({ dps: schema.color, set: getColor(hue, 1000, 1000) });
+  //   device.set({ dps: schema.sceneDefinition, set: getScene({
+  //     targetSlotNth: 4,
+  //     stages: [
+  //       {crossfade: false, holdMs: 1000, hue, saturation: 1000, lightness: 1000},
+  //     ]
+  //   }) });
+  //   hue += 20
+  //   saturation -= 50
+  //   if (hue > 360) hue = 0;
+  //   if (saturation < 500) saturation = 1000
+  // }, 2000);
 
-  if (interval.unref) interval.unref();
+  // if (interval.unref) interval.unref();
 });
 
 device.on("disconnected", () => {
@@ -103,3 +94,4 @@ process.on('SIGINT', () => {
 });
 
 module.exports.device = device
+module.exports.ready = ready

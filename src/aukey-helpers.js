@@ -1,4 +1,12 @@
-// this isn't exact unfortunately
+// this isn't exact 1 second unfortunately, seems not possible, measured:
+// 5000 is 375ms == 13.3
+// 7000 is 550ms == 12.7
+// 9000 is 700ms == 12.85
+// 12000 is 925ms == 12.97
+// 16000 is 1270ms == 12.6
+// 25000 is 1970ms == 12.7
+// 26000 is 2040ms == 12.75 ratio or maybe even 13 (10x was 20 seconds)
+
 const TIME_RATIO = 13
 // 13.11 too slow
 // 13.02 too slow
