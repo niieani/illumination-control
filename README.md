@@ -32,7 +32,7 @@ Do customize this behavior in `preload.js` to your liking.
 
 ## Usage
 
-```
+```js
 const { device, ready } = require("./run");
 const { getScene, schema } = require("./aukey-helpers");
 
