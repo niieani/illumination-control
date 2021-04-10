@@ -1,30 +1,30 @@
-const TuyAPI = require("tuyapi");
-const devices = require("./devices");
-const { getScene, schema } = require("./aukey-helpers");
+const TuyAPI = require('tuyapi')
+const devices = require('./devices')
+const {getScene, schema} = require('./aukey-helpers')
 
-const device = new TuyAPI(devices[0]);
+const device = new TuyAPI(devices[0])
 
 // Find device on network
 device.find().then(() => {
   // Connect to device
-  device.connect();
-});
+  device.connect()
+})
 
-let resolved;
+let resolved
 let ready = new Promise((resolve) => {
-  resolved = resolve;
-});
+  resolved = resolve
+})
 
 // Add event listeners
-device.on("connected", async () => {
-  console.log("Connected to device!");
-  resolved();
+device.on('connected', async () => {
+  console.log('Connected to device!')
+  resolved()
 
   // turn on with inital settings:
   device.set({
     multiple: true,
     data: {
-      [schema.mode]: "scene",
+      [schema.mode]: 'scene',
       [schema.power]: true,
       [schema.sceneDefinition]: getScene({
         targetSlotNth: 4,
@@ -39,26 +39,26 @@ device.on("connected", async () => {
         ],
       }),
     },
-  });
-});
+  })
+})
 
-device.on("disconnected", () => {
-  console.log("Disconnected from device.");
-  process.exit();
-});
+device.on('disconnected', () => {
+  console.log('Disconnected from device.')
+  process.exit()
+})
 
-device.on("error", (error) => {
-  console.log("Error!", error);
-});
+device.on('error', (error) => {
+  console.log('Error!', error)
+})
 
-device.on("data", (data) => {
-  console.log("Data from device:", data);
-});
+device.on('data', (data) => {
+  console.log('Data from device:', data)
+})
 
 // disconnect on CTRL+C
-process.on("SIGINT", () => {
-  device.disconnect();
-});
+process.on('SIGINT', () => {
+  device.disconnect()
+})
 
-module.exports.device = device;
-module.exports.ready = ready;
+module.exports.device = device
+module.exports.ready = ready

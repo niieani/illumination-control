@@ -1,7 +1,7 @@
-const { getScene } = require("./aukey-helpers");
+const {getScene} = require('./aukey-helpers')
 
-describe("scenes", () => {
-  test("single", () => {
+describe('scenes', () => {
+  test('single', () => {
     expect(
       getScene({
         targetSlotNth: 4,
@@ -15,9 +15,9 @@ describe("scenes", () => {
           },
         ],
       })
-    ).toMatchInlineSnapshot(`"0432320001f403e803e800000000"`);
-  });
-  test("flash", () => {
+    ).toMatchInlineSnapshot(`"0432320001f403e803e800000000"`)
+  })
+  test('flash', () => {
     expect(
       getScene({
         targetSlotNth: 4,
@@ -40,6 +40,6 @@ describe("scenes", () => {
       })
     ).toMatchInlineSnapshot(
       `"0432320101f403e803e80000000032320103e803e803e800000000"`
-    );
-  });
-});
+    )
+  })
+})
