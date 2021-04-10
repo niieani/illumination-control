@@ -1,7 +1,8 @@
 {
   "name": "illumination-control",
   "version": "1.0.0",
-  "description": "Tuya Control",
+  "description": "Aukey Lights Control (Tuya)",
+  "keywords": ["aukey", "light", "bulb", "tuya", "api"],
   "main": "src/main.js",
   "author": "Bazyli Brzoska <npm@invent.life>",
   "license": "MIT",
