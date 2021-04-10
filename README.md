@@ -1,5 +1,11 @@
 # Aukey Illumination Control
 
+Use JavaScript to control your [Aukey Smart RGB Lamp](https://www.amazon.com/gp/product/B08TM4DBRB/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1) running on Tuya IoT firmware.
+
+The protocol for setting color and scenes was reverse engineered and you can use simple helper functions from this repo to set them. You can even make combinations that aren't possible with the UI (e.g. scenes that mix fades with non-fades).
+
+The light is very responsive on a good WiFi network, so I'm trying to do some audio visualization with the lamp, but you can use it for your own needs. :)
+
 ## Setup
 
 You'll need to create a Tuya IoT account: https://iot.tuya.com/index/
